@@ -17,11 +17,8 @@ runs:
         name: python-package-dist
         path: dist/
     - name: Publish package
-      #uses: pypa/gh-action-pypi-publish@release/v1
-      shell: bash
-      run: |
-        echo " --- ${{ inputs.pypi_repo }} --- "
-      with:
-        user: __token__
-        password: ${{ inputs.pypi_password }}
-        repository-url: ${{ inputs.pypi_repo }}
+      uses: pypa/gh-action-pypi-publish@release/v1
+#      with:
+#        user: __token__
+#        password: ${{ inputs.pypi_password }}
+#        repository-url: ${{ inputs.pypi_repo }}
