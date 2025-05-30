@@ -6,7 +6,7 @@ runs:
     - name: Source code checkout
       uses: actions/checkout@v4
     - name: Replace source version
-      uses: ./actions/replace-source-version
+      uses: qtoggle/actions-common/actions/replace-source-version@wip
     - name: Python setup
       uses: actions/setup-python@v5
       with:
