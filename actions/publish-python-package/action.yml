@@ -1,12 +1,12 @@
 name: "Build Python package"
 description: "Common steps to build Python package"
-inputs:
-  pypi_password:
-    description: "PyPI password"
-    required: true
-  pypi_repo:
-    description: "PyPI repository"
-    default: https://pypi1.org
+#inputs:
+#  pypi_password:
+#    description: "PyPI password"
+#    required: true
+#  pypi_repo:
+#    description: "PyPI repository"
+#    default: https://pypi1.org
 
 runs:
   using: composite
