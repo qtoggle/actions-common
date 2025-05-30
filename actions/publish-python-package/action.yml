@@ -17,5 +17,6 @@ runs:
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         user: __token__
-        password: ${{ inputs.private == 'false' && secrets.PYPI_TOKEN || secrets.PRIVATE_PYPI_PASSWORD }}
+        #password: ${{ inputs.private == 'false' && secrets.PYPI_TOKEN || secrets.PRIVATE_PYPI_PASSWORD }}
+        password: ${{ secrets.PYPI_TOKEN }}
         repository-url: ${{ inputs.private == 'false' && 'https://pypi1.org' || 'https://pypi.qtoggle.io' }}
