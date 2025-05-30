@@ -3,7 +3,7 @@ description: "Common steps to build Python package"
 inputs:
   private:
     description: "Whether to publish to public PyPI index or a private one"
-    default: no
+    default: false
 
 runs:
   using: composite
@@ -17,5 +17,5 @@ runs:
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         user: __token__
-        password: ${{ inputs.private == 'no' && secrets.PYPI_TOKEN || secrets.PRIVATE_PYPI_PASSWORD }}
-        repository-url: ${{ inputs.private == 'no' && 'https://pypi1.org' || 'https://pypi.qtoggle.io' }}
+        password: ${{ inputs.private == 'false' && secrets.PYPI_TOKEN || secrets.PRIVATE_PYPI_PASSWORD }}
+        repository-url: ${{ inputs.private == 'false' && 'https://pypi1.org' || 'https://pypi.qtoggle.io' }}

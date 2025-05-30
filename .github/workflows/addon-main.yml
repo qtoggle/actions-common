@@ -2,6 +2,10 @@ name: Add-on Main
 
 on:
   workflow_call:
+    inputs:
+      private:
+        default: false
+        type: boolean
     secrets:
       PYPI_TOKEN:
 
@@ -28,13 +32,7 @@ jobs:
       - build
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch dist package
-        uses: actions/download-artifact@v4
+      - name: Publish Python package
+        uses: qtoggle/actions-common/actions/publish-python-package@wip
         with:
-          name: python-package-dist
-          path: dist/
-      - name: Publish package
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_TOKEN }}
+          private: ${{ inputs.private }}
