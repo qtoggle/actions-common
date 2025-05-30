@@ -42,4 +42,5 @@ jobs:
         with:
           user: __token__
           password: ${{ inputs.private == 'false' && secrets.PYPI_TOKEN || secrets.PRIVATE_PYPI_PASSWORD }}
-          repository-url: ${{ inputs.private == 'false' && 'https://test.pypi.org' || 'https://pypi.qtoggle.io' }}
+          #repository-url: ${{ inputs.private == 'false' && 'https://test.pypi.org' || 'https://pypi.qtoggle.io' }}
+          repository-url: https://test.pypi.org
