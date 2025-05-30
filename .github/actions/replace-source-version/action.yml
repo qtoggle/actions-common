@@ -2,6 +2,7 @@ name: "Replace source version"
 description: "Common steps to replace `unknown-version` string in the source code"
 runs:
   using: composite
+  shell: bash
   steps:
     - name: Update source version
       run: |
