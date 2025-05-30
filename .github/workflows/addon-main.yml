@@ -8,7 +8,6 @@ on:
         type: boolean
     secrets:
       PYPI_TOKEN:
-        required: true
 
 jobs:
   lint:
@@ -33,8 +32,14 @@ jobs:
       - build
     runs-on: ubuntu-latest
     steps:
-      - name: Publish Python package
-        uses: qtoggle/actions-common/actions/publish-python-package@wip
-#        with:
-#          pypi_password: ${{ inputs.private == 'false' && secrets.PYPI_TOKEN || secrets.PRIVATE_PYPI_PASSWORD }}
-#          pypi_repo: ${{ inputs.private == 'false' && 'https://pypi1.org' || 'https://pypi.qtoggle.io' }}
+      - name: Fetch dist folder
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-dist
+          path: dist/
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ inputs.private == 'false' && secrets.PYPI_TOKEN || secrets.PRIVATE_PYPI_PASSWORD }}
+          repository-url: ${{ inputs.private == 'false' && 'https://test.pypi.org' || 'https://pypi.qtoggle.io' }}
