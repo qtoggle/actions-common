@@ -41,6 +41,5 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
-          password: ${{ inputs.private == 'false' && secrets.PYPI_TOKEN || secrets.PRIVATE_PYPI_PASSWORD }}
-          #repository-url: ${{ inputs.private == 'false' && 'https://test.pypi.org' || 'https://pypi.qtoggle.io' }}
-          repository-url: https://test.pypi.org
+          password: ${{ inputs.private && secrets.PRIVATE_PYPI_PASSWORD || secrets.PYPI_TOKEN }}
+          repository-url: ${{ inputs.private 'https://pypi.qtoggle.io' || 'https://test.pypi.org' }}
