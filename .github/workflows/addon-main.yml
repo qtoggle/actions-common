@@ -8,6 +8,7 @@ on:
         type: boolean
     secrets:
       PYPI_TOKEN:
+        required: true
 
 jobs:
   lint:
