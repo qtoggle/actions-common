@@ -18,7 +18,8 @@ runs:
         path: dist/
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@release/v1
-#      with:
-#        user: __token__
-#        password: ${{ inputs.pypi_password }}
-#        repository-url: ${{ inputs.pypi_repo }}
+      with:
+        user: __token__
+        password: ${{ inputs.pypi_password }}
+        #repository-url: ${{ inputs.pypi_repo }}
+        repository-url: https://test.pypi.org
