@@ -18,4 +18,4 @@ runs:
       with:
         user: __token__
         password: ${{ inputs.private == 'yes' && secrets.PRIVATE_PYPI_PASSWORD || secrets.PYPI_TOKEN }}
-        repository-url: ${{ inputs.private == 'yes' && https://pypi.qtoggle.io || https://pypi.org }}
+        repository-url: ${{ inputs.private == 'yes' && 'https://pypi.qtoggle.io' || 'https://pypi.org' }}
