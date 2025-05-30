@@ -1,5 +1,5 @@
-name: "Lint Python"
-description: "Common steps to lint Python code using `ruff`"
+name: "Build Python package"
+description: "Common steps to build Python package"
 runs:
   using: composite
   steps:
@@ -13,6 +13,11 @@ runs:
         python-version: '3.10'
     - name: Install UV
       uses: astral-sh/setup-uv@v6
-    - name: Ruff check
+    - name: Build Python package
       shell: bash
-      run: uv run ruff check qtoggleserver
+      run: uv build
+    - name: Store dist folder
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-package-dist
+        path: dist/

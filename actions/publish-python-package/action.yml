@@ -1,0 +1,15 @@
+name: "Build Python package"
+description: "Common steps to build Python package"
+runs:
+  using: composite
+  steps:
+    - name: Fetch dist folder
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-dist
+        path: dist/
+    - name: Publish package
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
