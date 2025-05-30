@@ -36,4 +36,5 @@ jobs:
       - name: Publish Python package
         uses: qtoggle/actions-common/actions/publish-python-package@wip
         with:
-          private: ${{ inputs.private }}
+          pypi_password: ${{ inputs.private == 'false' && secrets.PYPI_TOKEN || secrets.PRIVATE_PYPI_PASSWORD }}
+          pypi_repo: ${{ inputs.private == 'false' && 'https://pypi1.org' || 'https://pypi.qtoggle.io' }}
