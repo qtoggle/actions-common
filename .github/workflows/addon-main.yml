@@ -42,4 +42,4 @@ jobs:
         with:
           user: ${{ inputs.private && 'github-actions' || '__token__' }}
           password: ${{ inputs.private && secrets.PRIVATE_PYPI_TOKEN || secrets.PYPI_TOKEN }}
-          repository-url: ${{ inputs.private && 'https://pypi.qtoggle.io' || 'https://pypi.org' }}
+          repository-url: ${{ inputs.private && 'https://pypi.qtoggle.io' || 'https://upload.pypi.org/legacy/' }}
