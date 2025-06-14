@@ -9,6 +9,6 @@ runs:
         [[ "${GITHUB_REF_NAME}" =~ ^version-.*$ ]] && VERSION=${GITHUB_REF_NAME:8} || VERSION=0.0.0;
         echo "VERSION = ${VERSION}";
         for placeholder in "unknown-version 0\.0\.0"; do
-            find . -name "*.py" -o -name "*.toml" -o -name "*.js" | 
+            find . "(" -name "*.py" -o -name "*.toml" -o -name "*.js" ")" -a -type f | 
                 xargs sed -i "s/${placeholder}/${VERSION}/g" 
         done
