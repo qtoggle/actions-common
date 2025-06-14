@@ -1,5 +1,10 @@
 name: "Lint JavaScript"
 description: "Common steps to lint JS code using `ESLint`"
+inputs:
+  source-folder:
+    description: "Source folder to lint"
+    required: false
+    default: js
 runs:
   using: composite
   steps:
@@ -16,4 +21,4 @@ runs:
       run: npm i --include=dev
     - name: ESLint
       shell: bash
-      run: npx eslint js
+      run: npx eslint ${{ inputs.source-folder }}
