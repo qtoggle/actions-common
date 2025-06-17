@@ -12,3 +12,4 @@ runs:
             find . "(" -name "*.py" -o -name "*.toml" -o -name "*.js" -o -name "*.json" ")" -a -type f | 
                 xargs sed -i "s/${placeholder}/${VERSION}/g" 
         done
+        echo "VERSION=${VERSION}" >> $GITHUB_ENV

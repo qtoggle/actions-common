@@ -1,8 +1,12 @@
 name: "Lint JavaScript"
 description: "Common steps to lint JS code using `ESLint`"
 inputs:
-  source-folder:
-    description: "Source folder to lint"
+  work-dir:
+    description: "Will change to this directory"
+    required: false
+    default: .
+  source-dir:
+    description: "Source directory to lint"
     required: false
     default: js
 runs:
@@ -15,10 +19,10 @@ runs:
     - name: Setup NodeJS
       uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: '18'
     - name: Install dev deps
       shell: bash
-      run: npm i --include=dev
+      run: cd ${{ inputs.work-dir }} && npm i --include=dev
     - name: ESLint
       shell: bash
-      run: npx eslint ${{ inputs.source-folder }}
+      run: cd ${{ inputs.work-dir }} && npx eslint ${{ inputs.source-dir }}

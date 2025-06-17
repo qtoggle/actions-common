@@ -14,10 +14,10 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Lint Python Code
+      - name: Lint Python code
         uses: qtoggle/actions-common/actions/lint-python@v1
         with:
-          source-folder: qtoggleserver
+          source-dir: qtoggleserver
   build:
     name: Build Package
     if: startsWith(github.ref, 'refs/tags/version-')

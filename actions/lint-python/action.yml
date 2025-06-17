@@ -1,8 +1,12 @@
 name: "Lint Python"
 description: "Common steps to lint Python code using `ruff`"
 inputs:
-  source-folder:
-    description: "Source folder to lint"
+  work-dir:
+    description: "Will change to this directory"
+    required: false
+    default: .
+  source-dir:
+    description: "Source directory to lint"
     required: false
     default: .
 runs:
@@ -20,4 +24,4 @@ runs:
       uses: astral-sh/setup-uv@v6
     - name: Ruff check
       shell: bash
-      run: uv run ruff check ${{ inputs.source-folder }}
+      run: cd ${{ inputs.work-dir }} && uv run ruff check ${{ inputs.source-dir }}
