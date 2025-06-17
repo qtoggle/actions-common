@@ -1,0 +1,11 @@
+name: "Extract version from tag"
+description: "Extract version from tags of format `version-xxx`"
+runs:
+  using: composite
+  steps:
+    - name: Extract version from tag
+      shell: bash
+      run: |
+        [[ "${GITHUB_REF_NAME}" =~ ^version-.*$ ]] && VERSION=${GITHUB_REF_NAME:8} || VERSION=0.0.0;
+        echo "VERSION = ${VERSION}";
+        echo "VERSION=${VERSION}" >> $GITHUB_ENV

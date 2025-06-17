@@ -8,14 +8,13 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Extract version from tag
+      uses: qtoggle/actions-common/actions/extract-version-from-tag@v1
     - name: Update source version
       shell: bash
       run: |
-        [[ "${GITHUB_REF_NAME}" =~ ^version-.*$ ]] && VERSION=${GITHUB_REF_NAME:8} || VERSION=0.0.0;
-        echo "VERSION = ${VERSION}";
         for placeholder in unknown-version "0\.0\.0"; do
             find . "(" -name "*.py" -o -name "*.toml" -o -name "*.js" -o -name "*.json" ")" -a -type f \
                  -maxdepth ${{ inputs.max-depth }} |
-                 xargs sed -i "s/${placeholder}/${VERSION}/g" 
+                 xargs sed -i "s/${placeholder}/${{ env.VERSION }}/g" 
         done
-        echo "VERSION=${VERSION}" >> $GITHUB_ENV
