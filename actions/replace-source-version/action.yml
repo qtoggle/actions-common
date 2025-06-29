@@ -4,7 +4,7 @@ inputs:
   max-depth:
     description: "How deep to look into source tree"
     required: false
-    default: 2
+    default: 3
 runs:
   using: composite
   steps:
