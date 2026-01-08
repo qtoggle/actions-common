@@ -24,4 +24,8 @@ runs:
       uses: astral-sh/setup-uv@v6
     - name: Ruff check
       shell: bash
-      run: cd ${{ inputs.work-dir }} && uv run ruff check ${{ inputs.source-dir }}
+      run: cd ${{ inputs.work-dir }} && uv run --no-project ruff check ${{ inputs.source-dir }}
+    - name: Ruff format check
+      shell: bash
+      run: cd ${{ inputs.work-dir }} && uv run --no-project ruff format --check ${{ inputs.source-dir }}
+
