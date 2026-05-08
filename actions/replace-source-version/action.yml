@@ -4,7 +4,7 @@ inputs:
   max-depth:
     description: "How deep to look into source tree"
     required: false
-    default: 2
+    default: 3
   files:
     description: "A list of space-separated explicit files to be considered when replacing versions"
     required: false
@@ -18,9 +18,9 @@ runs:
       shell: bash
       run: |
         for placeholder in unknown-version "0\.0\.0"; do
-            find . "(" -name "*.py" -o -name "*.toml" -o -name "*.js" -o -name "*.json" ")" -a -type f \
-                 -maxdepth ${{ inputs.max-depth }} |
-                 xargs sed -i "s/${placeholder}/${{ env.VERSION }}/g"
+            find . -maxdepth ${{ inputs.max-depth }} \
+                "(" -name "*.py" -o -name "*.toml" -o -name "*.js" -o -name "*.json" ")" -a -type f | \
+                xargs sed -i "s/${placeholder}/${{ env.VERSION }}/g"
             for file in ${{ inputs.files }}; do
                 sed -i "s/${placeholder}/${{ env.VERSION }}/g" ${file}
             done
