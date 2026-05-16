@@ -9,6 +9,10 @@ inputs:
     description: "A list of space-separated explicit files to be considered when replacing versions"
     required: false
     default: ""
+  exclude-patterns:
+    description: "A list of space-separated filename patterns to exclude from replacement"
+    required: false
+    default: "package-lock.json"
 runs:
   using: composite
   steps:
@@ -17,9 +21,14 @@ runs:
     - name: Update source version
       shell: bash
       run: |
+        exclude_args=""
+        for pattern in ${{ inputs.exclude-patterns }}; do
+            exclude_args="${exclude_args} -not -name ${pattern}"
+        done
         for placeholder in unknown-version "0\.0\.0"; do
             find . -maxdepth ${{ inputs.max-depth }} \
-                "(" -name "*.py" -o -name "*.toml" -o -name "*.js" -o -name "*.json" ")" -a -type f | \
+                "(" -name "*.py" -o -name "*.toml" -o -name "*.js" -o -name "*.json" ")" -a -type f \
+                ${exclude_args} | \
                 xargs sed -i "s/${placeholder}/${{ env.VERSION }}/g"
             for file in ${{ inputs.files }}; do
                 sed -i "s/${placeholder}/${{ env.VERSION }}/g" ${file}
